@@ -7,8 +7,6 @@ This res contain all my published `notebooks` knit to `html` extension
 
 2 [WordCloud with Python](https://hyuto.github.io/notebooks/WordCloud/)
 
-3 [test](https://hyuto.github.io/notebooks/test/test.html)
-
 ## Environments
 ### `github pages` 
 ext to my github pages `hyuto.github.io/notebooks/`
