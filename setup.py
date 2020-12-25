@@ -83,7 +83,7 @@ if __name__ == "__main__":
         footer = data[data.index('## Environments'):]
 
         logging.info("Setup 'API.json'")
-        with open(os.path.join(CONTENT_PATH, 'API', 'API.json'), 'w') as f:
+        with open(os.path.join(CONTENT_PATH, 'API.json'), 'w') as f:
             f.write(dumps(API, indent = 3))
 
         logging.info("Setup README")
