@@ -5,10 +5,10 @@ from sys import argv
 from json import dumps, load
 from string import ascii_letters
 
+CONTENT_PATH = os.path.join(os.getcwd(), 'content')
+
 EXCLUDE = [
-    ".vscode",
-    "API",
-    ".git"
+    "API"
 ]
 
 CONFIG = {
@@ -29,14 +29,14 @@ def renderMD(API:list, header:str, footer:str) -> str:
         content += f"{i + 1} [{x['Title']}]({x['url']})\n\n"
     return header + content + footer
 
-def CreateProject(name:str) -> None:
+def CreateProject(PATH, name:str) -> None:
     """
     Generate New Project
     """
-    PATH = os.path.join(os.getcwd(), name)
+    PATH = os.path.join(PATH, name)
     if not os.path.isdir(PATH):
         logging.info(f"Makin Directory for {name}")
-        os.mkdir(name)
+        os.mkdir(PATH)
 
     config_file = os.path.join(PATH, 'config.json')
     if not os.path.isfile(config_file):
@@ -48,22 +48,23 @@ def CreateProject(name:str) -> None:
         logging.error("Project already exits!")
         raise EnvironmentError("Already exist!")
 
-    logging.info("Done!")
-
-
 if __name__ == "__main__":
     print()
     install()
     args = argv[1:]
 
     if args[0] == "create":
-        CreateProject(args[1])
+        logging.info(f"Create {args[1]}..")
+        CreateProject(CONTENT_PATH, args[1])
+        logging.info("Done!")
 
     elif len(args) == 1 and args[0] == "update":
-        contents = [x for x in os.listdir('.') if x not in EXCLUDE and os.path.isdir(x)]
+        logging.info("Updating API..")
+        contents = [x for x in os.listdir(CONTENT_PATH) if x not in EXCLUDE and os.path.isdir(os.path.join(CONTENT_PATH, x))]
         API = []
         for content in contents:
-            config_json = os.path.join(os.getcwd(), content, 'config.json')
+            logging.info(f"Configurate for {content}")
+            config_json = os.path.join(CONTENT_PATH, content, 'config.json')
             with open(config_json) as f:
                 config_json = load(f)
             config_json["url"] = f'https://hyuto.github.io/notebooks/{content}/'
@@ -75,16 +76,23 @@ if __name__ == "__main__":
 
         API.sort(key = lambda x: x["Title"])
 
-        with open('README.md') as f:
+        with open(os.path.join(CONTENT_PATH, 'README.md')) as f:
             data = f.read()
 
         header = data[:data.index('## Content\n') + 11]
         footer = data[data.index('## Environments'):]
 
-        with open(os.path.join('API', 'API.json'), 'w') as f:
+        logging.info("Setup 'API.json'")
+        with open(os.path.join(CONTENT_PATH, 'API', 'API.json'), 'w') as f:
             f.write(dumps(API, indent = 3))
+
+        logging.info("Setup README")
+        with open(os.path.join(CONTENT_PATH, 'README.md'), 'w') as f:
+            f.write(renderMD(API, header, footer))
 
         with open('README.md', 'w') as f:
             f.write(renderMD(API, header, footer))
+
+        logging.info("Done !")
     else:
         raise KeyError("Command not found!")
