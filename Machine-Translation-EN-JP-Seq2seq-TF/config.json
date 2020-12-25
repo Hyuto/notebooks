@@ -1,0 +1,8 @@
+{
+  "MAIN": "index.html",
+  "Title": "Machine Translation EN JP Seq2seq Tensorflow 2",
+  "AUTHOR": "Wahyu Setianto",
+  "DATE": "25/12/2020",
+  "SYNOPSIS": "Creating Neural Machine Translation from English to Japanese with Tensorflow 2",
+  "IMG": "WC_Japanese.png"
+}
