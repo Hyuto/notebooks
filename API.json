@@ -16,5 +16,14 @@
       "SYNOPSIS": "Create Wonderful Image contain a lot of words (WordCloud) Using Python",
       "IMG": null,
       "url": "https://hyuto.github.io/notebooks/WordCloud/"
+   },
+   {
+      "MAIN": "test.html",
+      "Title": "test",
+      "AUTHOR": "Wahyu Setianto",
+      "DATE": "25/12/2020",
+      "SYNOPSIS": "Testing",
+      "IMG": null,
+      "url": "https://hyuto.github.io/notebooks/test/test.html"
    }
 ]
