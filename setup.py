@@ -7,9 +7,7 @@ from string import ascii_letters
 
 CONTENT_PATH = os.path.join(os.getcwd(), 'content')
 
-EXCLUDE = [
-    "API"
-]
+EXCLUDE = []
 
 CONFIG = {
     "MAIN": "index.html",
@@ -19,6 +17,13 @@ CONFIG = {
     "SYNOPSIS": "",
     "IMG": None
 }
+
+HELP = """Setup for Notebooks
+Usage:
+* create <projects name> : Create new notebooks
+* update                 : Update new changes to API
+
+© Hyuto 2020"""
 
 def renderMD(API:list, header:str, footer:str) -> str:
     """
@@ -53,7 +58,10 @@ if __name__ == "__main__":
     install()
     args = argv[1:]
 
-    if args[0] == "create":
+    if args == [] or args[0].lower() == "--help":
+        print(HELP)
+
+    elif args[0] == "create":
         logging.info(f"Create {args[1]}..")
         CreateProject(CONTENT_PATH, args[1])
         logging.info("Done!")
@@ -94,5 +102,7 @@ if __name__ == "__main__":
             f.write(renderMD(API, header, footer))
 
         logging.info("Done !")
+        
     else:
-        raise KeyError("Command not found!")
+        logging.error("Command not found!")
+        print('\n' + HELP)
