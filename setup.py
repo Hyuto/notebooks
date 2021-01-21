@@ -58,7 +58,7 @@ if __name__ == "__main__":
     install()
     args = argv[1:]
 
-    if args == [] or args[0].lower() == "--help":
+    if args == [] or args[0].lower() in ["--help", "-h"]:
         print(HELP)
 
     elif args[0] == "create":
