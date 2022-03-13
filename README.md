@@ -1,12 +1,8 @@
 # Notebooks
 
-This res contain all my published `notebooks` knit to `html` extension
+This repository contain all my archived `notebooks`.
 
-## Content
-1 [Machine Translation EN JP Seq2seq Tensorflow 2](https://hyuto.github.io/notebooks/Machine-Translation-EN-JP-Seq2seq-TF/)
+## Additional Notebook
 
-2 [WordCloud with Python](https://hyuto.github.io/notebooks/WordCloud/)
-
-## Environments
-### `github pages` 
-ext to my github pages `hyuto.github.io/notebooks/`
+View my other notebooks on
+[![kaggle](https://img.shields.io/badge/Kaggle-blue?logo=kaggle)](https://www.kaggle.com/wahyusetianto/code)
